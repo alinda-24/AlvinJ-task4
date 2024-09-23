@@ -12,9 +12,9 @@ public class SimpleGame {
         System.out.println("Welcome to SimpleGame!");
         while (gameRunning) {
             movePlayer(5);
-            encounterEnemy(15); 
-            if (playerHealth <= 0) {
-                System.out.println("Player's health has reached zero. Game over!");
+            encounterEnemy(15,10); 
+            if (playerScore <= 0) {
+                System.out.println("Player's score has reached zero. Game over!");
                 gameRunning = false;
             }
         }
@@ -29,49 +29,37 @@ public class SimpleGame {
             System.out.println("Player's current score: " + playerScore);
             if (playerScore <= 0) {
                 System.out.println("Player's score has reached zero. Game over!");
-                break;
             }
         }
     }
-    public static void encounterEnemy(int enemyHealth) {
-        System.out.println("You encountered an enemy with " + enemyHealth + " health points!");
-        while (enemyHealth > 0 && playerHealth > 0) {
-            int choice = getPlayerAction();
-            if (choice == 1) {
-                enemyHealth = attackEnemy(enemyHealth, 3);
-            } else if (choice == 2) {
-                enemyHealth = attackEnemy(enemyHealth, "fireball");
-            }
-            int enemyDamage = 2;
-            playerHealth -= enemyDamage;
-            System.out.println("The enemy retaliates and deals " + enemyDamage + " damage to the player.");
-            System.out.println("Player's current health: " + playerHealth);
-        }
-        if (playerHealth > 0) {
-            System.out.println("Player defeated the enemy!");
-            updateScore(true, false);
-        } else {
-            System.out.println("The player was defeated!");
-        }
-    }
-    public static int attackEnemy(int enemyHealth, int damage) {
+
+    public static void encounterEnemy(int enemyHealth, int damage) {
         System.out.println("Player attacks the enemy, dealing " + damage + " damage.");
         enemyHealth -= damage;
         System.out.println("Enemy's current health: " + enemyHealth);
-        return enemyHealth;
+        if (enemyHealth <= 0) {
+            System.out.println("Enemy has fallen!");
+            updateScore(true, false);
+        } else{
+            System.out.println("Enemy was not killed! You run away!");
+        }
     }
-    public static int attackEnemy(int enemyHealth, String specialMove) {
+    public static void encounterEnemy(int enemyHealth, String specialMove) {
         System.out.println("Player uses a special move: " + specialMove + "!");
         int damage = 5;
         enemyHealth -= damage;
         System.out.println("Special move deals " + damage + " damage.");
         System.out.println("Enemy's current health: " + enemyHealth);
-        return enemyHealth;
+        if (enemyHealth <= 0) {
+            System.out.println("Enemy has fallen!");
+            updateScore(true, false);
+        } else{
+            System.out.println("Enemy was not killed! You run away!");
+        }
     }
     public static void collectItem(boolean itemCollected) {
         if (itemCollected) {
             updateScore(false, true);
-            System.out.println("Player collected an item!");
             System.out.println("Player's current score: " + playerScore);
         }
     }
@@ -84,9 +72,5 @@ public class SimpleGame {
             playerScore += 10; 
             System.out.println("Player collected an item! Score increased by 10.");
         }
-    }
-    public static int getPlayerAction() {
-        System.out.println("Choose an action: 1 (Regular Attack), 2 (Special Move): ");
-        return 1;  
     }
 }
