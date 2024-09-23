@@ -1,134 +1,153 @@
-# Java Game Development
+# 🎯 Advanced Loops and Conditionals in Java
 
-Creating a game application involves combining various programming concepts to simulate player interactions, scoring, and the presence of enemies. This assignment focuses on using these concepts: `boolean` expressions and operators, `while` loops, `for` loops, using JShell, and function overloading in Java.
+One of the true strengths of computers lies in their ability to perform repetitive tasks efficiently. This week, we'll explore advanced aspects of Java's looping constructs, delve deeper into boolean expressions and operators, and harness the power of function overloading—all while using JShell for quick testing and experimentation.
 
-### 📝 Preparation
+## 📝 Preparation
 
-- Go through the [Java Programming and Game Design](https://java-game-dev-course.com) lectures.
-- Familiarize yourself with concepts in:
-  - [Module: Game Loops](https://java-game-dev-course.com/modules/game-loops)
-  - [Module: Player Interactions](https://java-game-dev-course.com/modules/player-interaction)
+- Review the [lecture slides](https://docs.oracle.com/en/java/javase/17/docs/api/index.html).
+- Read and answer all questions in:
+  - [Advanced Looping Techniques](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/loops.html)
+  - [Java Boolean Expressions](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html)
 
-### ✅ Learning Goals
+## ✅ Learning Goals
 
-This week's learning goals include:
+By the end of this module, you should be able to:
+- Construct and evaluate complex boolean expressions using logical operators.
+- Implement both `while` and `for` loops effectively.
+- Use JShell to prototype and test Java code seamlessly.
+- Utilize function overloading to handle different parameter lists efficiently.
 
-* `boolean` expressions and operators
-* `while` loops
-* `for` loops
-* Using JShell to try your Java program
-* Function overloading
+## 🚨 Troubleshooting Guide
 
-### 🚨 Troubleshooting Guide
+If you encounter any issues during the exercises:
+1. Check this week's [posted issues](https://gits-15.sys.kth.se/inda-24/help/issues) to see if others have similar problems.
+2. If needed, create a [New Issue](https://gits-15.sys.kth.se/inda-24/help/issues/new) with a descriptive title: "Task _x_: _summary of problem_"
+3. Attend the [weekly lab](https://queue.csc.kth.se/Queue/INDA) for personalized help from a TA.
 
-If you encounter any issues during this assignment:
+Engage with your peers constructively while maintaining academic integrity. Seek to understand AI explanations, but submit only your original work.
 
-1. Check the [troubleshooting forum](https://java-game-dev-course.com/help-forum) for similar queries.
-2. If your question isn't posted, create a [new issue](https://java-game-dev-course.com/help-forum/new-issue) summarizing your problem.
-3. Attend the [online tutoring sessions](https://java-game-dev-course.com/labs) for direct assistance.
+## 🏛 Assignment
 
-Engage with your classmates for discussions, but refrain from sharing code directly. If using AI tools for help, ensure that the final solution reflects your understanding and is uniquely yours.
+We will explore multiple looping constructs and understand decision-making using boolean logic in various contexts this week.
 
-### 🎯 Assignment: Build a Simple Game Application
+### 📚 Boolean Expressions and Functionality
 
-Your task is to create a simple game with the following features: player movement, a scoring system, and enemy interactions.
-
-#### Step 1: Understanding Boolean Logic
-
-Understanding when to stop a loop or decide on actions within the game is crucial. Boolean expressions are at the core of these decisions.
+Our first goal is to deepen our understanding of boolean values and expressions. We will explore how these can be used as decision points in looping structures.
 
 <details>
-<summary> 📚 Boolean values, expressions, and operators </summary>
+<summary> 📒 Topics Overview: Boolean Values, Expressions, and Operators </summary>
 
-A [boolean value](https://en.wikipedia.org/wiki/Boolean_data_type) is either `true` or `false`. A [boolean expression](https://en.wikipedia.org/wiki/Boolean_expression) evaluates to these values.
+A [boolean value](https://en.wikipedia.org/wiki/Boolean_data_type) represents true or false states. A [boolean expression](https://en.wikipedia.org/wiki/Boolean_expression) evaluates to true or false depending on the conditions. Recall that Java's boolean operators are:
+- `&&` (and)
+- `||` (or)
+- `!` (not)
+
+Explore these operators in JShell to see how they alter expressions.
+
 ```java
-boolean isPlayerAlive = true;
-boolean enemyNearby = false;
+jshell> boolean a = (5 > 3) && (2 < 4)
+a ==> true
+
+jshell> boolean b = !(7 == 5)
+b ==> true
 ```
 
-Three essential boolean operators in Java are `&&` (Logical AND), `||` (Logical OR), and `!` (Logical NOT).
-```java
-if (isPlayerAlive && enemyNearby) {
-    System.out.println("Prepare for battle!");
-}
-```
-Use parentheses to clarify the order of operations in complex expressions, similar to arithmetic operations.
+Use parentheses to affect operation precedence, similar to arithmetic expressions.
+
 </details>
 
-#### Exercise 1.1 -- Boolean Logic Practice
+### 🚀 Task 1: Exploring and Evaluating Boolean Expressions
 
-Evaluate these boolean expressions and determine the value:
+**Exercise 5.1.1 (docs) -- Evaluate complex boolean expressions**
 
-| Expression            | Value   |
-|-----------------------|---------|
-| `10 > 5 && 10 < 15`   |         |
-| `5 == 5 || 5 < 5`     |         |
-| `!(false && true)`    |         |
-| `true || (false && true)` |    |
+Refer to `docs/README.md` to complete the table where you evaluate each expression:
 
-Test your evaluations with JShell for immediate feedback.
+| Boolean expression         | Value   |
+| -------------------------- | ------- |
+| `(4 > 5) || (3 == 3)`      |         |
+| `!(10 <= 10) && (1 != 1)`  |         |
+| `!(true && false) || true` |         |
 
-#### Step 2: Implementing Basic Game Loop
+> **Assistant's tip:** Use JShell to evaluate expressions quickly and understand how operators interact.
 
-The game loop is the core structure that keeps the game running by repeatedly checking for updates, player inputs, and rendering visuals.
+### 🔍 Task 2: Implementing Loop Constructs
 
-<details>
-<summary> 📚 The while loop </summary>
+Begin by jumping into practical implementation of `while` and `for` loops. We'll create methods demonstrating their versatility.
 
-The [while-loop](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/while.html) continuously executes a block of code while a condition is true.
+**Exercise 5.2.1 -- Implementing a `while` loop**
+
+Create a Java file named `LoopingDemo.java`. Inside, write a method to use a `while` loop to display all prime numbers between 1 and 100.
+
 ```java
-boolean gameRunning = true;
-while (gameRunning) {
-    // Game logic here
-    if (playerHealth <= 0) {
-        gameRunning = false;
+public static void printPrimesWhile() {
+    int num = 2;
+    while (num <= 100) {
+        if (isPrime(num)) {
+            System.out.println(num);
+        }
+        num++;
     }
 }
-```
-</details>
 
-#### Exercise 2.1 -- Setting Up Your Game Loop
-
-Create a class `SimpleGame` with a `main` method. Use a `while` loop to create a game loop that checks for player health and ends the game if health declines to 0 or lower.
-
-#### Step 3: Player Movement and Scoring
-
-<details>
-<summary> 📚 The for loop </summary>
-
-A [for-loop](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html) is ideal for iterating over a range of values.
-```java
-for (int score = 0; score <= 100; score += 10) {
-    System.out.println("Current Score: " + score);
+public static boolean isPrime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
 }
 ```
-</details>
 
-#### Exercise 3.1 -- Implement Player Movement
+**Exercise 5.2.2 -- Summing numbers with a `for` loop**
 
-Add a method `movePlayer` that uses a for-loop for movement in a simplistic axis system (e.g., x, y coordinates). Decrease the player's score for every move.
+Add another method that sums all even numbers from 1 to 50 using a `for` loop.
 
-#### Exercise 3.2 -- Scoring System
-
-Create a method that updates and displays the player's score based on actions like defeating enemies or collecting items. Use a `boolean` to check if an item is collected or an enemy is defeated for score modifications.
-
-#### Step 4: Enemy Interactions and Challenges
-
-Use function overloading to simulate different encounters with enemies. Overload methods to handle varied interactions (e.g., `attackEnemy(int damage)` and `attackEnemy(String specialMove)`).
-
-#### Exercise 4.1 -- Handle Enemy Interactions
-
-1. Implement methods for different types of enemy interactions using function overloading.
-2. Utilize `while` loops to handle continuous interactions until a condition is met (like enemy health reaching zero).
-
-#### Step 5: Testing and JShell
-
-Integrate all parts and validate your game logic using JShell for testing individual functions or scenarios without building the entire project every time.
-
-```bash
-# Example JShell session
-jshell SimpleGame.java
-SimpleGame.movePlayer();
+```java
+public static int sumEvenNumbers() {
+    int sum = 0;
+    for (int i = 2; i <= 50; i += 2) {
+        sum += i;
+    }
+    return sum;
+}
 ```
 
-Focus on creating a seamless experience integrating all the learned concepts. Remember, the key to successful game development is continuous testing and iterations. Happy coding! 🚀
+### 🔄 Task 3: Experimenting with Function Overloading
+
+Function overloading enhances code flexibility by allowing multiple methods with the same name but different parameters.
+
+**Exercise 5.3.1 -- Overloaded methods**
+
+In your `LoopingDemo.java` file, create overloaded methods to calculate powers:
+
+```java
+public static long power(int base, int exp) {
+    long result = 1;
+    for (int i = 1; i <= exp; i++) {
+        result *= base;
+    }
+    return result;
+}
+
+public static double power(double base, int exp) {
+    double result = 1.0;
+    for (int i = 1; i <= exp; i++) {
+        result *= base;
+    }
+    return result;
+}
+```
+
+Explore calling these methods from JShell for real-time results like `power(5, 3)` and `power(2.5, 2)`.
+
+### 💡 Extra Credit: Function Overloading with Varied Return Types
+
+Create an overloaded `calculateFactorial` method where one version returns an `int` and another rounds or truncates to return a `double` when needed.
+
+### 🌐 Using JShell
+
+For all tasks, repeatedly use JShell to test and tweak your methods interactively. This not only aids in checking correctness but also provides immediate feedback, enhancing your learning experience.
+
+---
+
+Implement these exercises thoughtfully, grasp the nuances of each concept, and soon you'll leverage them for powerful, efficient Java programming! Happy coding! 🎉
